@@ -41,7 +41,7 @@ jobs:
           cache: true
       - run: flutter pub get
       # A failing test stops the job here: nothing is deployed.
-      - run: flutter test test/event_test.dart
+      - run: flutter test test/events_test.dart
       - run: flutter test test/contentful_source_test.dart
       - run: flutter test test/org_fair_test.dart
       - name: Build the web app

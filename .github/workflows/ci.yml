@@ -31,7 +31,7 @@ jobs:
         run: flutter pub get
 
       - name: Run event tests
-        run: flutter test test/event_test.dart
+        run: flutter test test/events_test.dart
 
       - name: Run Contentful tests
         run: flutter test test/contentful_source_test.dart
