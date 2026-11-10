@@ -1,0 +1,43 @@
+# Continuous integration: every pull request and every push to main is
+# checked. A red X on the pull request means do not merge yet.
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: BRAGA-UNIT_8_ASSIGNMENT/Unit 7
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Run event tests
+        run: flutter test test/event_test.dart
+
+      - name: Run Contentful tests
+        run: flutter test test/contentful_source_test.dart
+
+      - name: Run app tests
+        run: flutter test test/org_fair_test.dart
+
+      - name: Build web app
+        run: flutter build web --release
